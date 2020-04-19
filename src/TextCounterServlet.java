@@ -17,36 +17,11 @@ public class TextCounterServlet extends HttpServlet {
         String textFromUser = request.getParameter("text");
 
         response.getWriter().println(String.format("%s ", textFromUser));
-        response.getWriter().println(String.format("<h2>Ilość słów: %d</h2>", countWords(textFromUser)));
-        response.getWriter().println(String.format("<h2>Ilość znaków: %d</h2>", countSigns(textFromUser)));
-        response.getWriter().println(String.format("<h2>Ilość znaków (bez spacji): %d</h2>", countSignsWithoutSpaces(textFromUser)));
-        response.getWriter().println(String.format("<h2>Palindrom: %s</h2>", isPalindrom(textFromUser)));
+        response.getWriter().println(String.format("<h2>Ilość słów: %d</h2>", Statistics.countWords(textFromUser)));
+        response.getWriter().println(String.format("<h2>Ilość znaków: %d</h2>", Statistics.countSigns(textFromUser)));
+        response.getWriter().println(String.format("<h2>Ilość znaków (bez spacji): %d</h2>", Statistics.countSignsWithoutSpaces(textFromUser)));
+        response.getWriter().println(String.format("<h2>Palindrom: %s</h2>", Statistics.isPalindrom(textFromUser)));
 
-    }
-
-    int countWords(String textFromUser){
-        return textFromUser.split(" ").length;
-    }
-
-    int countSigns(String textFromUser){
-        return textFromUser.length();
-    }
-
-    int countSignsWithoutSpaces(String textFromUser){
-        return  textFromUser.replace(" ", "").length();
-    }
-
-    boolean isPalindrom(String textFromUser){
-        int textLenght = countSigns(textFromUser);
-        int start = 0;
-        int end = (textLenght - 1);
-        for (int i = 0; i < textLenght; i++) {
-            if (textFromUser.charAt(i) != textFromUser.charAt(end)) {
-                start = 1;
-                break;
-            } end--;
-        }
-        return start != 1;
     }
 
 }
